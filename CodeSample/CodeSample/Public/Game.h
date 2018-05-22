@@ -1,6 +1,7 @@
 #pragma once
 
 class World;
+class Player;
 
 class Game
 {
@@ -11,6 +12,14 @@ public:
 	// returns bRunning
 	bool MainGameLoop();
 
+	World* GetWorld();
+
+	void Init();
+
+	void DeInit();
+
+private:
+	
 	void WaitForFrameTime();
 
 	void Render();
@@ -19,16 +28,18 @@ public:
 
 	void DrawWorld();
 
+	void Update();	
+
 	void UpdateInput();
 
 	void ExitGame();
 
-	void Init();
 
-	void DeInit();
-
-private:
 	bool bRunning;
 
 	World* world;
+
+	Player* player;
 };
+
+Game* GetGame();

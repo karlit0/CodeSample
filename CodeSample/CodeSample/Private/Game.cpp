@@ -6,11 +6,15 @@
 #include <chrono>
 
 #include "World.h"
+#include "Player.h"
+
+Game GameGlobal;
 
 Game::Game()
 {
 	bRunning = true;
 	world = new World();
+	player = new Player();
 }
 
 bool Game::MainGameLoop()
@@ -18,10 +22,10 @@ bool Game::MainGameLoop()
 	if (bRunning)
 	{
 		WaitForFrameTime();
+		
+		Update();
 
 		Render();
-
-		UpdateInput();
 	}
 
 	return bRunning;
@@ -64,16 +68,50 @@ void Game::DrawWorld()
 	}
 }
 
+void Game::Update()
+{
+	UpdateInput();
+
+	if (world && player)
+	{
+		world->Update(*player);
+	}
+}
+
 void Game::UpdateInput()
 {
 	if (GetAsyncKeyState(VK_ESCAPE))
 	{
 		ExitGame();
 	}
-
+	
+	if (GetAsyncKeyState(VK_UP))
+	{
+		if (player)
+		{
+			player->MoveUp();
+		}
+	}
+	if (GetAsyncKeyState(VK_DOWN))
+	{
+		if (player)
+		{
+			player->MoveDown();
+		}
+	}
 	if (GetAsyncKeyState(VK_LEFT))
 	{
-		printf("LEFT");
+		if (player)
+		{
+			player->MoveLeft();
+		}
+	}
+	if (GetAsyncKeyState(VK_RIGHT))
+	{
+		if (player)
+		{
+			player->MoveRight();
+		}
 	}
 }
 
@@ -86,7 +124,7 @@ void Game::Init()
 {
 	if (world)
 	{
-		world->Init();
+		world->Clear();
 	}
 	else
 	{
@@ -100,4 +138,14 @@ void Game::DeInit()
 	{
 		world->DeInit();
 	}
+}
+
+World* Game::GetWorld()
+{
+	return world;
+}
+
+Game* GetGame()
+{
+	return &GameGlobal;
 }

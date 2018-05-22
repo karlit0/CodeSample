@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "World.h"
+#include "Player.h"
 
 World::World()
 {
@@ -10,7 +11,7 @@ World::World()
 	WorldBuffer = new char[WorldBufferSize];
 }
 
-void World::Init()
+void World::Clear()
 {
 	int worldBufferCounter = 0;
 
@@ -57,7 +58,41 @@ void World::DeInit()
 	delete WorldBuffer;
 }
 
+void World::Update(const Player& player)
+{	
+	Clear();
+
+	DrawPlayer(player);
+}
+
 void World::Draw()
 {
 	printf("%s", WorldBuffer);
+}
+void World::ConvertFromWorldPosToRawBufferPos(short worldPosX, short worldPosY, short& OUT_RawBufferPos)
+{
+	OUT_RawBufferPos = (worldPosY + 1) * (WorldSizeX + 3) + (worldPosX + 1);
+}
+
+void World::DrawPlayer(const Player& player)
+{
+	short playerPosX = 0;
+	short playerPosY = 0;
+	player.GetPosition(playerPosX, playerPosY);
+	short rawBufPos = 0;
+	ConvertFromWorldPosToRawBufferPos(playerPosX, playerPosY, rawBufPos);
+	WorldBuffer[rawBufPos] = '@';
+}
+
+bool World::IsWithinBounds(short worldPosX, short worldPosY)
+{
+	if (worldPosX >= 0 && worldPosX < WorldSizeX
+		&& worldPosY >= 0 && worldPosY < WorldSizeY)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
