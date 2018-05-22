@@ -12,7 +12,7 @@ public:
 	// returns bRunning
 	bool MainGameLoop();
 
-	World* GetWorld();
+	World* GetWorld() const;
 
 	void Init();
 
@@ -20,13 +20,13 @@ public:
 
 private:
 	
-	void WaitForFrameTime();
+	void WaitForFrameTime() const;
 
-	void Render();
+	void Render() const;
 
-	void ClearScreen();
+	void ClearScreen() const;
 
-	void DrawWorld();
+	void DrawWorld() const;
 
 	void Update();	
 

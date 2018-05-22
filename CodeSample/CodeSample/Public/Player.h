@@ -10,7 +10,7 @@ public:
 	void MoveLeft();
 	void MoveRight();
 
-	bool IsWithinWorldBounds(int PosX, int PosY);
+	bool IsWithinWorldBounds(int PosX, int PosY) const;
 	void GetPosition(short& OUT_PosX, short& OUT_PosY) const;
 
 private:

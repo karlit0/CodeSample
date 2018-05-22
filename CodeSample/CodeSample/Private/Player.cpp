@@ -42,7 +42,7 @@ void Player::MoveRight()
 	}
 }
 
-bool Player::IsWithinWorldBounds(int PosX, int PosY)
+bool Player::IsWithinWorldBounds(int PosX, int PosY) const
 {
 	bool bRet = false;
 

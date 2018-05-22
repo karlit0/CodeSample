@@ -65,11 +65,11 @@ void World::Update(const Player& player)
 	PlacePlayer(player);
 }
 
-void World::Draw()
+void World::Draw() const
 {
 	printf("%s", WorldBuffer);
 }
-void World::ConvertFromWorldPosToRawBufferPos(short worldPosX, short worldPosY, short& OUT_RawBufferPos)
+void World::ConvertFromWorldPosToRawBufferPos(short worldPosX, short worldPosY, short& OUT_RawBufferPos) const
 {
 	OUT_RawBufferPos = (worldPosY + 1) * (WorldSizeX + 3) + (worldPosX + 1);
 }
@@ -84,7 +84,7 @@ void World::PlacePlayer(const Player& player)
 	WorldBuffer[rawBufPos] = '@';
 }
 
-bool World::IsWithinBounds(short worldPosX, short worldPosY)
+bool World::IsWithinBounds(short worldPosX, short worldPosY) const
 {
 	if (worldPosX >= 0 && worldPosX < WorldSizeX
 		&& worldPosY >= 0 && worldPosY < WorldSizeY)

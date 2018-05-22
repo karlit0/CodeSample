@@ -13,9 +13,9 @@ public:
 
 	void Update(const Player& player);
 
-	void Draw();	
+	void Draw() const;	
 
-	bool IsWithinBounds(short worldPosX, short worldPosY);
+	bool IsWithinBounds(short worldPosX, short worldPosY) const;
 
 private:
 	short WorldSizeX;
@@ -24,6 +24,6 @@ private:
 	int WorldBufferSize;
 	char* WorldBuffer;
 
-	void ConvertFromWorldPosToRawBufferPos(short worldPosX, short worldPosY, short& OUT_RawBufferPos);
+	void ConvertFromWorldPosToRawBufferPos(short worldPosX, short worldPosY, short& OUT_RawBufferPos) const;
 	void PlacePlayer(const Player& player);
 };

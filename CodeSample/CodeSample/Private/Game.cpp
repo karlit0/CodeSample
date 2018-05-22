@@ -31,7 +31,7 @@ bool Game::MainGameLoop()
 	return bRunning;
 }
 
-void Game::WaitForFrameTime()
+void Game::WaitForFrameTime() const
 {
 	std::chrono::time_point<std::chrono::steady_clock> timeStart = std::chrono::steady_clock::now();
 	
@@ -49,18 +49,18 @@ void Game::WaitForFrameTime()
 	} while (fp_ms.count() < timestepMilli);
 }
 
-void Game::Render()
+void Game::Render() const
 {
 	ClearScreen();
 	DrawWorld();
 }
 
-void Game::ClearScreen()
+void Game::ClearScreen() const
 {	
 	system("CLS");
 }
 
-void Game::DrawWorld()
+void Game::DrawWorld() const
 {	
 	if (world)
 	{
@@ -140,7 +140,7 @@ void Game::DeInit()
 	}
 }
 
-World* Game::GetWorld()
+World* Game::GetWorld() const
 {
 	return world;
 }
