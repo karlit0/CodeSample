@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Private">
+      <UniqueIdentifier>{ace74c82-54f5-4cc5-8ae3-17e7746450c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Public">
+      <UniqueIdentifier>{183fc439-99f3-4c7c-8e84-10562df42993}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -28,6 +34,9 @@
     </ClCompile>
     <ClCompile Include="CodeSample.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Game.cpp">
+      <Filter>Source Files\Private</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
