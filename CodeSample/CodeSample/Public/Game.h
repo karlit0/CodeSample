@@ -1,5 +1,7 @@
 #pragma once
 
+class World;
+
 class Game
 {
 
@@ -17,8 +19,6 @@ public:
 
 	void DrawWorld();
 
-	void AddToRenderBuffer(char c);
-
 	void UpdateInput();
 
 	void ExitGame();
@@ -30,11 +30,5 @@ public:
 private:
 	bool bRunning;
 
-	short worldSizeX;
-	short worldSizeY;
-
-	int renderBufferSize;
-	char* renderBuffer;
-	int renderCounter;
-
+	World* world;
 };

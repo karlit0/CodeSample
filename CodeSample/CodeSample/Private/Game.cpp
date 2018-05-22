@@ -5,14 +5,12 @@
 #include "Winuser.h"
 #include <chrono>
 
+#include "World.h"
+
 Game::Game()
 {
 	bRunning = true;
-	worldSizeX = 64;
-	worldSizeY = 32;
-	renderBufferSize = (worldSizeX + 3) * (worldSizeY + 2) + 1; // worldsizeX + 3 (2 for left and right border, 1 for endline), worldsizeY + 2 (2 for top and bot border), + 1 for \0
-	renderBuffer = new char[renderBufferSize];
-	renderCounter = 0;
+	world = new World();
 }
 
 bool Game::MainGameLoop()
@@ -56,57 +54,14 @@ void Game::Render()
 void Game::ClearScreen()
 {	
 	system("CLS");
-	for (int i = 0; i < renderBufferSize; i++)
-	{
-		renderBuffer[i] = '\0';
-	}
-	renderCounter = 0;
 }
 
 void Game::DrawWorld()
 {	
-	// top border
-	for (int x = 0; x < worldSizeX + 2; x++)
+	if (world)
 	{
-		AddToRenderBuffer('*');
+		world->Draw();
 	}
-	AddToRenderBuffer('\n');
-
-	// side borders
-	for (int y = 0; y < worldSizeY; y++)
-	{
-		AddToRenderBuffer('*');
-		for (int x = 0; x < worldSizeX; x++)
-		{
-			AddToRenderBuffer(' ');
-		}
-		AddToRenderBuffer('*');
-		AddToRenderBuffer('\n');
-	}
-
-	// bot border
-	for (int x = 0; x < worldSizeX + 2; x++)
-	{
-		AddToRenderBuffer('*');
-	}
-	AddToRenderBuffer('\n');
-
-	AddToRenderBuffer('\0');
-
-	printf("%s", renderBuffer);
-}
-
-void Game::AddToRenderBuffer(char c)
-{
-	if (renderCounter < renderBufferSize)
-	{
-		renderBuffer[renderCounter] = c;
-	}
-	else
-	{
-		printf("Error!! renderCounter: %d", renderCounter);
-	}
-	renderCounter++;
 }
 
 void Game::UpdateInput()
@@ -129,10 +84,20 @@ void Game::ExitGame()
 
 void Game::Init()
 {
-
+	if (world)
+	{
+		world->Init();
+	}
+	else
+	{
+		printf("Error!! Game::Init, world NULL");
+	}
 }
 
 void Game::DeInit()
 {
-
+	if (world)
+	{
+		world->DeInit();
+	}
 }
