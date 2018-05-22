@@ -62,7 +62,7 @@ void World::Update(const Player& player)
 {	
 	Clear();
 
-	DrawPlayer(player);
+	PlacePlayer(player);
 }
 
 void World::Draw()
@@ -74,7 +74,7 @@ void World::ConvertFromWorldPosToRawBufferPos(short worldPosX, short worldPosY, 
 	OUT_RawBufferPos = (worldPosY + 1) * (WorldSizeX + 3) + (worldPosX + 1);
 }
 
-void World::DrawPlayer(const Player& player)
+void World::PlacePlayer(const Player& player)
 {
 	short playerPosX = 0;
 	short playerPosY = 0;

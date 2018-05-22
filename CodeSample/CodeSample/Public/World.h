@@ -25,5 +25,5 @@ private:
 	char* WorldBuffer;
 
 	void ConvertFromWorldPosToRawBufferPos(short worldPosX, short worldPosY, short& OUT_RawBufferPos);
-	void DrawPlayer(const Player& player);
+	void PlacePlayer(const Player& player);
 };
