@@ -1,0 +1,9 @@
+.vscode
+.vs
+*.VC.db
+*.opensdf
+*.opendb
+*.sdf
+*.suo
+CodeSample/Debug
+CodeSample/CodeSample/Debug
